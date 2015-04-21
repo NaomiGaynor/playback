@@ -10,7 +10,7 @@ function(
 
 	var NoItemsView = Backbone.View.extend({
 
-		template: _.template(NoItemsTemplate)
+		template: _.template("NoItemsTemplate")
 
 		, initialize: function() {
 			this.options.model = new Backbone.Model({

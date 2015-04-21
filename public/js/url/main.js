@@ -58,7 +58,7 @@ define([
 				this.$search.html( this.ns.views.search.render().el );
 
 				//events methods that will listen for change and then update the collection by calling render function 
-				this.listenTo(this.ns.collections.pictures, "reset change", this.RenderGallery);
+				this.listenTo(this.ns.collections.pictures, "reset change", this.renderGallery);
 
 			},
 
@@ -66,7 +66,7 @@ define([
 			renderGallery: function (collection, options) {
 
 				//error handling 
-				if (!this.collection.size()) {
+				if (!collection.size()) {
 					if(!this.ns.views.noPicture) {
 						this.ns.views.noPicture = new NoPicturesView({ message: "No Images found" });
 					}

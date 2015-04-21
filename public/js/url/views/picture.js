@@ -24,6 +24,7 @@ function (
 			if (this.options) {
 				if (this.options.model) {
 					context = this.options.model.toJSON();
+					console.log(context);
 				}
 			}
 			return context;

@@ -15,7 +15,7 @@ function(
 			class: "thumbnail details url-clearfix"
 		}
 
-		, template: _.template(ImageDetailsTemplate)
+		, template: _.template("ImageDetailsTemplate")
 
 		, events: {
 			'click .btn.back': 'goBack'

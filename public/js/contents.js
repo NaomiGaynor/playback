@@ -18,8 +18,8 @@ define([
 			URL.routers = {
 				//creating new router, which is defined in url/main.js 
 				BurberryPictureRouter: new BurberryPictureRouter({
-					$el: $('wrapper canvas')
-					, $search: $('wrapper search')
+					$el: $('wrapper.canvas')
+					, $search: $('wrapper.search')
 				})
 			};
 		};
