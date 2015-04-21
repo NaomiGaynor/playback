@@ -19,7 +19,6 @@ define([
 				// sets fileName to jpg image
 				response.fileName = this.urlTruncate(response.media.m);
 				response.tagsArray = response.tags.split(' ');
-				//console.log(response);
 				return response;
 			},
 

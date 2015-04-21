@@ -9,7 +9,7 @@ define([
 	],
 function(
 	Backbone
-	, pictureView	
+	, PictureView	
 ){
 
 	var picturesView = Backbone.View.extend({
@@ -28,12 +28,14 @@ function(
 
 		//render function 
 		render: function (){
+			console.log(this.collection.models);
 			var picture; 
 			this.$el.html('');
-			if(this.options && this.options.hasOwnPropery('collection')){
-				this.options.collection.each(function(model){
+			if(this.collection.options ){
+				(this.collection.models).forEach(function(model){
+
 					//assigns each picture view to model passsed in as argumnet of function
-					pictureView = new pictureView({
+					pictureView = new PictureView({
 						model:model
 					});
 

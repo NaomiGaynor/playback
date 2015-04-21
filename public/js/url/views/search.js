@@ -14,7 +14,7 @@ function(
 			class: 'pull-right'
 		},
 
-		template: _.template("searchTemplate"),
+		template: _.template(searchTemplate),
 
 		//store a submit event that will update tag on search 
 		events: {

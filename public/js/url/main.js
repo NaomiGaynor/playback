@@ -44,6 +44,8 @@ define([
 			//initialize function 
 			initialize: function (options){
 
+				console.log(options);
+
 				//set $root and $search to equal $el and $search respectively, passed in from contents.js module 
 				this.$root = options.$el;
 				this.$search = options.$search;
@@ -84,7 +86,7 @@ define([
 
 			//Route handler responsible for getting images based on tag
 			GETFlickrPictures: function (tags) {
-				console.log("collections.items "+JSON.stringify(this.ns.collections));
+
 				if (this.ns.collections.pictures.size() && this.ns.collections.pictures.getFilter().tags === tags) {
 					this.renderGallery(this.ns.collections.pictures);
 				}else{

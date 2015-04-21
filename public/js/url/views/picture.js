@@ -16,17 +16,17 @@ function (
 
 		tagName: "li",
 
-		template: _.template("imageTemplate"),
+		template: _.template(imageTemplate),
 
 		//serialize function will save all attributes from the model into a context object
 		serialize: function() {
 			var context = {};
-			if (this.options) {
-				if (this.options.model) {
-					context = this.options.model.toJSON();
-					console.log(context);
+			
+			console.log(this.model.attributes);
+				if (this.model) {
+					context = this.model.toJSON();
+					console.log("context is: "+context);
 				}
-			}
 			return context;
 		}, 
 
