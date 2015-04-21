@@ -1,17 +1,16 @@
 define([
 	'backbone'
-	, 'urltemplating'
 	, 'text!../../templates/no-image.html'
 ],
 function(
 	Backbone
 	, TemplatingEngine
-	, NoItemsTpl
+	, NoItemsTemplate
 ) {
 
 	var NoItemsView = Backbone.View.extend({
 
-		template: NoItemsTpl
+		template: _.template(NoItemsTemplate)
 
 		, initialize: function() {
 			this.options.model = new Backbone.Model({

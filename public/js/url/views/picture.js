@@ -16,7 +16,7 @@ function (
 
 		tagName: "li",
 
-		template: _.template(imageTemplate),
+		template: _.template("imageTemplate"),
 
 		//serialize function will save all attributes from the model into a context object
 		serialize: function() {
