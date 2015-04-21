@@ -1,0 +1,23 @@
+{
+  "name": "playback",
+  "version": "1.0.0",
+  "description": "learning to use backbone",
+  "main": "index.html",
+  "scripts": {
+    "start":"http-server -a localhost -p 8000 -c-1",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NaomiGaynor/playback.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NaomiGaynor/playback/issues"
+  },
+  "homepage": "https://github.com/NaomiGaynor/playback",
+  "devDependencies": {
+    "http-server": "^0.8.0"
+  }
+}

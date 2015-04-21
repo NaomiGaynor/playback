@@ -1,0 +1,92 @@
+/*/*******************************
+
+Collection is built here it connects with models 
+one collection connects with many models.	
+
+*********************************/
+
+define([
+	'backbone'
+	, '../config'
+	, '../models/picture'
+	
+	], 
+	function (
+		Backbone 
+		, CONFIGURATION 
+		, ImageModel
+		
+		){
+
+		var PicturesCollection = Backbone.Collection.extend({
+
+			//connects with flickr api 
+			rootApi: 'http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=?'
+
+			, model: ImageModel
+
+			//initialize function will set up AJAX call to Flickr API
+			, initialize: function(model, options){
+				_.bindAll(this, "beforeSend", "completed")
+
+				//set options
+				this.options = options || {};
+
+				$.ajaxSetup({
+					beforeSend: this.beforeSend
+					, complete: this.completed
+				});
+			},
+
+			beforeSend: function(){
+				this.trigger("fetch:start");
+			},
+
+			completed: function(){
+				this.trigger("fetch:end");
+			},
+
+			//builds url for ajax call to api 
+			url: function(){
+				var url = this.rootApi; 
+
+				if(this.options && this.options.hasOwnProperty("filter")){
+					if(this.options.filter.tags){
+						url = [url, "tagmode=all", "tags="+this.options.filter.tags].join('&'); 
+					}
+				}
+				return url
+			}, 
+
+			sync: function (method, model, options){
+				return $.ajax(
+					_.extend({
+						dataType: "jsonp"
+						, url: this.url()
+						, processData: false
+					}, options)
+				);
+			}, 
+			//uses function in model to getfilename for collection 
+			retrieveFileName: function(filename){
+				return this.find(function(image){ return filename === image.getFileName() });
+			},
+
+			//functions set filter and getFIlter are responsible for setting and geting filter internally, they are used in url function
+			setFilter: function(filter){
+				return this.options.filter= filter;
+			},
+
+			getFilter: function(){
+				return this.options.filter || {}
+			},
+
+			//accesses the an array called items and will parse it to the model.
+			parse: function(response) {
+			return response.items;
+		}
+
+		});
+
+		return PicturesCollection;
+	});
