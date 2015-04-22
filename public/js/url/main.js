@@ -17,7 +17,7 @@ define([
 	], 
 	function (
 		Backbone
-		, CONFIGURATION	
+		, config
 		, PicturesCollection
 		, PicturesView
 		, NoPicturesView
@@ -27,7 +27,7 @@ define([
 
 		//defines custom router class
 		var BurberryPictureRouter = Backbone.Router.extend({
-			//empty objects that will be populated during the initialize function
+			//empty namespace objects that will be populated during the initialize function
 			ns: {
 				collections: {}
 				, views: {}
@@ -83,7 +83,7 @@ define([
 
 			//this handler is responsible for populating the initial gallery with photos tagged with burberry from configuration module
 			initialGallery: function (){
-				this.search(CONFIGURATION.filter.tags);
+				this.search(config.filter.tags);
 			},
 
 			//handler responsible for rendering image details 

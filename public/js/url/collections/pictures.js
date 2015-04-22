@@ -7,13 +7,11 @@ one collection connects with many models.
 
 define([
 	'backbone'
-	, '../config'
 	, '../models/picture'
 	
 	], 
 	function (
 		Backbone 
-		, CONFIGURATION 
 		, ImageModel
 		
 		){
