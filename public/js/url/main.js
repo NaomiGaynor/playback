@@ -36,7 +36,6 @@ define([
 			//specified routes for app 
 			routes: {
 				"": "initialGallery"
-				, "pictures/:tag" : "GETFlickrPictures"
 				, "picture/:photo_name" : "GETPictureinfo"
 				, "search/:tag" : "search"
 			}, 
@@ -44,7 +43,6 @@ define([
 			//initialize function 
 			initialize: function (options){
 
-				console.log(options);
 
 				//set $root and $search to equal $el and $search respectively, passed in from contents.js module 
 				this.$root = options.$el;
@@ -56,11 +54,13 @@ define([
 				this.ns.views.pictures = new PicturesView({ collection: this.ns.collections.pictures });
 
 				this.ns.views.search = new SearchView({ route: this });
+
 				//calls render function in SearchView to update new search
 				this.$search.html( this.ns.views.search.render().el );
 
 				//events methods that will listen for change and then update the collection by calling render function 
 				this.listenTo(this.ns.collections.pictures, "reset change", this.renderGallery);
+				
 
 			},
 
@@ -81,19 +81,7 @@ define([
 
 			//this handler is responsible for populating the initial gallery with photos tagged with burberry from configuration module
 			initialGallery: function (){
-				this.GETFlickrPictures(CONFIGURATION.filter.tags);
-			},
-
-			//Route handler responsible for getting images based on tag
-			GETFlickrPictures: function (tags) {
-
-				if (this.ns.collections.pictures.size() && this.ns.collections.pictures.getFilter().tags === tags) {
-					this.renderGallery(this.ns.collections.pictures);
-				}else{
-					this.ns.collections.pictures.setFilter({ tags:tags });
-					this.ns.collections.pictures.fetch({ reset: true });
-				}
-				this.ns.views.search.setTerm(tags);
+				this.search(CONFIGURATION.filter.tags);
 			},
 
 			//handler responsible for rendering image details 
@@ -102,7 +90,7 @@ define([
 				var imageModel;
 
 				if (this.ns.collections.pictures.size()){
-					imageModel = this.ns.collections.pictures.getByFileName(filename);
+					imageModel = this.ns.collections.pictures.retrieveFileName(filename);
 					if(imageModel) {
 						this.ns.views.image = new PictureView({ model: imageModel });
 						this.$root.html( this.ns.views.image.render().el );
@@ -117,14 +105,21 @@ define([
 			}, 
 
 			search: function(tags) {
-            	if (this.ns.collections.items.size() && this.ns.collections.items.getFilter().tags === tags) {
-                	this.renderList(this.ns.collections.items);
+
+				console.log("tags" + JSON.stringify(this.ns.collections.pictures));
+				console.log(this.ns.collections.pictures.size())
+				console.log(this.ns.collections.pictures.filter.tags);
+            	if (this.ns.collections.pictures.size() && this.ns.collections.pictures.getFilter().tags === tags) {
+                	this.renderList(this.ns.collections.pictures);
             	} else {
-                	this.ns.collections.items.setFilter({ tags: tags });
-                	this.ns.collections.items.fetch({ reset: true });
+            		console.log('hi');
+                	this.ns.collections.pictures.setFilter({ tags: tags });
+                	this.ns.collections.pictures.fetch({ reset: true });
             	}
             	this.ns.views.search.setTerm(tags);
         	}
+
+
 		});
 		
 		return BurberryPictureRouter;

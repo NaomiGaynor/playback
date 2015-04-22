@@ -38,14 +38,6 @@ define([
 				});
 			},
 
-			beforeSend: function(){
-				this.trigger("fetch:start");
-			},
-
-			completed: function(){
-				this.trigger("fetch:end");
-			},
-
 			//builds url for ajax call to api 
 			url: function(){
 				var url = this.rootApi; 
@@ -55,6 +47,7 @@ define([
 						url = [url, "tagmode=all", "tags="+this.options.filter.tags].join('&'); 
 					}
 				}
+
 				return url
 			}, 
 
@@ -74,17 +67,27 @@ define([
 
 			//functions set filter and getFIlter are responsible for setting and geting filter internally, they are used in url function
 			setFilter: function(filter){
-				return this.options.filter= filter;
+				console.log("reaches setFilter");
+				return this.options.filter = filter;
 			},
 
 			getFilter: function(){
+
 				return this.options.filter || {}
 			},
 
 			//accesses the an array called items and will parse it to the model.
 			parse: function(response) {
 			return response.items;
-		}
+			},
+
+			beforeSend: function(){
+				this.trigger("fetch:start");
+			},
+
+			completed: function(){
+				this.trigger("fetch:end");
+			},
 
 		});
 

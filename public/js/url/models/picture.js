@@ -18,7 +18,7 @@ define([
 			parse: function (response) {
 				// sets fileName to jpg image
 				response.fileName = this.urlTruncate(response.media.m);
-				response.tagsArray = response.tags.split(' ');
+				//response.tagsArray = response.tags.split(' ');
 				return response;
 			},
 

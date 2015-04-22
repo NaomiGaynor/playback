@@ -18,7 +18,9 @@ define([
 			URL.routers = {
 				//creating new router, which is defined in url/main.js 
 				BurberryPictureRouter: new BurberryPictureRouter({
+					//will append $el to .wrapper.canvas on index.html 
 					$el: $('.wrapper.canvas')
+					//will append $search to .wrapper.search
 					, $search: $('.wrapper.search')
 				})
 			};

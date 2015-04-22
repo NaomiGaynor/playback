@@ -1,0 +1,10 @@
+body{
+	background-color: black;
+}
+
+.thumbnails{
+	list-style-type: none;
+}
+h1{
+	color: blue;
+}

@@ -15,7 +15,7 @@ function(
 			class: "thumbnail details url-clearfix"
 		}
 
-		, template: _.template("ImageDetailsTemplate")
+		, template: _.template(ImageDetailsTemplate)
 
 		, events: {
 			'click .btn.back': 'goBack'
@@ -28,11 +28,12 @@ function(
 
 		serialize: function() {
 			var context = {};
-			if (this.options) {
-				if (this.options.model) {
-					context = this.options.model.toJSON();
+			
+			console.log(this.model.attributes);
+				if (this.model) {
+					context = this.model.toJSON();
+					console.log("context is: "+context);
 				}
-			}
 			return context;
 		}, 
 

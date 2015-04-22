@@ -22,10 +22,8 @@ function (
 		serialize: function() {
 			var context = {};
 			
-			console.log(this.model.attributes);
 				if (this.model) {
 					context = this.model.toJSON();
-					console.log("context is: "+context);
 				}
 			return context;
 		}, 
