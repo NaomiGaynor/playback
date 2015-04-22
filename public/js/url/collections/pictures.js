@@ -63,12 +63,13 @@ define([
 			}, 
 			//uses function in model to getfilename for collection 
 			retrieveFileName: function(filename){
+				
 				return this.find(function(image){ return filename === image.getFileName() });
 			},
 
 			//functions set filter and getFIlter are responsible for setting and geting filter internally, they are used in url function
 			setFilter: function(filter){
-				console.log("reaches setFilter");
+				
 				return this.options.filter = filter;
 			},
 			// getFIlter function retrieves filter is available or sets it to empty object 
@@ -79,14 +80,17 @@ define([
 
 			//accesses the an array called items and will parse it to the model.
 			parse: function(response) {
-			return response.items;
+				
+				return response.items;
 			},
 
 			beforeSend: function(){
+				
 				this.trigger("fetch:start");
 			},
 
 			completed: function(){
+				
 				this.trigger("fetch:end");
 			},
 

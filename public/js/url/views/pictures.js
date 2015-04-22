@@ -11,7 +11,7 @@ function(
 	Backbone
 	, PictureView	
 ){
-
+	//defines class of picture view 
 	var picturesView = Backbone.View.extend({
 
 		views: {
@@ -26,9 +26,9 @@ function(
 			class: 'thumbnails'
 		},
 
-		//render function 
+		//render function which loops through array of images and  stores json object in a model
 		render: function (){
-			console.log(this.collection.models);
+
 			var picture; 
 			this.$el.html('');
 			if(this.collection.options ){

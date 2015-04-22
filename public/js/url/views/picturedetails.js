@@ -17,22 +17,23 @@ function(
 
 		, template: _.template(ImageDetailsTemplate)
 
+		//event that will listen for click event on back button.
 		, events: {
-			'click .btn.back': 'goBack'
+			'click .btn-small.back': 'goBack'
 		}
 
+		//go back function, if used outside development mode would have to add an if statement to redirect to home page if user had accessed the site from a different site.
 		, goBack: function() {
 			window.history.back();
 			return false;
 		},
 
 		serialize: function() {
-			var context = {};
 			
-			console.log(this.model.attributes);
+			var context = {};
+	
 				if (this.model) {
 					context = this.model.toJSON();
-					console.log("context is: "+context);
 				}
 			return context;
 		}, 
