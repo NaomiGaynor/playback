@@ -11,7 +11,7 @@ function (
 	Backbone 
 	, imageTemplate
 ){
-
+	//defining class of view for individual images
 	var imageView = Backbone.View.extend({
 
 		tagName: "li",
@@ -27,7 +27,7 @@ function (
 				}
 			return context;
 		}, 
-
+		//render funtion will render template onto the DOM 
 		render: function(){
 			if (!this.template) {
 				throw Error('BaseView.render(): <template> property is required!');

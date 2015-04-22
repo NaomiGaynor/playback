@@ -11,7 +11,7 @@ function(
 	var NoItemsView = Backbone.View.extend({
 
 		template: _.template("NoItemsTemplate")
-
+		//in the senario of no images being returned this message will appear
 		, initialize: function() {
 			this.options.model = new Backbone.Model({
 				message: this.options && this.options.message ? this.options.message : ''

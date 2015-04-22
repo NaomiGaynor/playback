@@ -38,7 +38,7 @@ function(
 					pictureView = new PictureView({
 						model:model
 					});
-
+					
 					this.views.pictures[pictureView.cid] = pictureView;
 					this.$el.append( pictureView.render().el );
 				}, this);

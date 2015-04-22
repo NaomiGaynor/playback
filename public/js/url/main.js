@@ -48,15 +48,21 @@ define([
 				this.$root = options.$el;
 				this.$search = options.$search;
 
+				console.log("passed into routes" + this);
+
 				//loads new collection class into collections object and calls function to extend collection 
 				this.ns.collections.pictures = new PicturesCollection(); 
 				//loads new views class into views object and links view with collection and calls PituresView extend function  
 				this.ns.views.pictures = new PicturesView({ collection: this.ns.collections.pictures });
 
-				this.ns.views.search = new SearchView({ route: this });
+				//passes route object here new route can be defined later 
+
+				this.ns.views.search = new SearchView({ route: this.routes });
 
 				//calls render function in SearchView to update new search
 				this.$search.html( this.ns.views.search.render().el );
+
+				console.log(this.routes);
 
 				//events methods that will listen for change and then update the collection by calling render function 
 				this.listenTo(this.ns.collections.pictures, "reset change", this.renderGallery);
@@ -106,9 +112,6 @@ define([
 
 			search: function(tags) {
 
-				console.log("tags" + JSON.stringify(this.ns.collections.pictures));
-				console.log(this.ns.collections.pictures.size())
-				console.log(this.ns.collections.pictures.filter.tags);
             	if (this.ns.collections.pictures.size() && this.ns.collections.pictures.getFilter().tags === tags) {
                 	this.renderList(this.ns.collections.pictures);
             	} else {

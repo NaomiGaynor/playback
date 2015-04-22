@@ -18,10 +18,11 @@ define([
 			parse: function (response) {
 				// sets fileName to jpg image
 				response.fileName = this.urlTruncate(response.media.m);
-				//response.tagsArray = response.tags.split(' ');
+				//stores tags of images into an array
+				response.tagsArray = response.tags.split(' ');
 				return response;
 			},
-
+			//funtion to get filename of image form api url and will then return it.
 			getFileName: function (){
 				var fileName = "";
 
@@ -30,7 +31,7 @@ define([
 				}
 				return fileName;
 			},
-
+			//filename uses this function to take the last section of the array as a string so that it can be used as fileName
 			urlTruncate: function (url){
 				return url.split("/").pop();
 			}

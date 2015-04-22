@@ -1,6 +1,8 @@
 /*************************
 Boilerpate view created so that all views can be extended from this
 
+no longer in use
+
 *************************/
 
 define([
