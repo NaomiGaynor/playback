@@ -48,8 +48,6 @@ define([
 				this.$root = options.$el;
 				this.$search = options.$search;
 
-				console.log("passed into routes" + this);
-
 				//loads new collection class into collections object and calls function to extend collection 
 				this.ns.collections.pictures = new PicturesCollection(); 
 				//loads new views class into views object and links view with collection and calls PituresView extend function  
@@ -61,8 +59,6 @@ define([
 
 				//calls render function in SearchView to update new search
 				this.$search.html( this.ns.views.search.render().el );
-
-				console.log(this.routes);
 
 				//events methods that will listen for change and then update the collection by calling render function 
 				this.listenTo(this.ns.collections.pictures, "reset change", this.renderGallery);
@@ -110,15 +106,11 @@ define([
 				}
 			}, 
 
+			//search function saves selected search as the filter in collection. 
 			search: function(tags) {
 
-            	if (this.ns.collections.pictures.size() && this.ns.collections.pictures.getFilter().tags === tags) {
-                	this.renderList(this.ns.collections.pictures);
-            	} else {
-            		console.log('hi');
                 	this.ns.collections.pictures.setFilter({ tags: tags });
                 	this.ns.collections.pictures.fetch({ reset: true });
-            	}
             	this.ns.views.search.setTerm(tags);
         	}
 
