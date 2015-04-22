@@ -51,6 +51,7 @@ define([
 				return url
 			}, 
 
+			//makes ajax request to Flickr api
 			sync: function (method, model, options){
 				return $.ajax(
 					_.extend({
@@ -70,7 +71,7 @@ define([
 				console.log("reaches setFilter");
 				return this.options.filter = filter;
 			},
-
+			// getFIlter function retrieves filter is available or sets it to empty object 
 			getFilter: function(){
 
 				return this.options.filter || {}
