@@ -18,12 +18,12 @@ function(
 			//pictures views cache
 			pictures: {}
 		},
-
+		//appending to all image thumbnails
 		tagName: 'ul',
 
 		//setting attributes 
 		attributes: {
-			className: 'thumbnails'
+			class: 'thumbnails'
 		},
 
 		//render function 

@@ -12,7 +12,7 @@ function(
 		tagName: 'article'
 
 		, attributes: {
-			class: "thumbnail details url-clearfix"
+			class: "thumbnail"
 		}
 
 		, template: _.template(ImageDetailsTemplate)
