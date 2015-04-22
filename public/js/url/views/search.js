@@ -1,9 +1,11 @@
 define([
 	"backbone"
+	, "../main"
 	, "text!../../templates/search.html"
 ], 
 function(
 	Backbone
+	, router
 	, searchTemplate
 ){
 	var SearchBoxView = Backbone.View.extend({
@@ -22,24 +24,29 @@ function(
 		}, 
 
 		initialize: function() {
+
 			_.bindAll(this, 'onSearch');
 		},
 
+		//when a search term is entered this function is triggered and will change the url.
 		onSearch: function(e){
-			console.log('onSearch event called');
-			this.options.route.navigate(["search/", this.$('input[name="search"]').val()].join(""), {trigger: true});
+			e.preventDefault();
+			Backbone.history.navigate('search/'+ this.$('input[name="search"]').val(), {trigger: true});
 			return false;
 		},  
 
+
+		//setTerm function that will input the searchterm currently being searched into the input search box 
 		setTerm: function(searchTerm) {
 
 			this.$('input[name="search"]').val(searchTerm);
-			console.log(this.$('input[name="search"]').val(searchTerm));
+			
 		},
 
 		//serialize function will save all attributes from the model into a context object
 		serialize: function() {
 			var context = {};
+			console.log(this.options);
 			if (this.options) {
 				if (this.options.model) {
 					context = this.options.model.toJSON();
@@ -47,11 +54,11 @@ function(
 			}
 			return context;
 		}, 
-
+		//rrender function will append template to the DOM 
 		render: function(){
-			console.log('rendering');
+
 			if (!this.template) {
-				throw Error('BaseView.render(): <template> property is required!');
+				throw Error('View.render(): <template> property is required!');
 			}
 			this.$el.html(this.template(this.serialize()));
 			return this;
