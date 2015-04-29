@@ -28,6 +28,6 @@ define([
 		//DOMReady will be called by jquery on index load. 
 		$(document).ready(DOMReady);
 
-		//Start backbone history a necessary step for bookmarkable URL's 
+		//Start backbone history a necessary step for bookmarkable URL's will tell backbone that it should start monitoring backbone events 
 		Backbone.history.start();
 	});

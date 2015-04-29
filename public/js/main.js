@@ -1,6 +1,6 @@
 /************************************
 
-Config file for require.js paths load dependancies 
+Config file for require.js paths load dependancies that define AMD modules. 
 deps link to personal js scripts
 
 *************************************/

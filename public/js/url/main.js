@@ -43,7 +43,6 @@ define([
 			//initialize function 
 			initialize: function (options){
 
-
 				//set $root and $search to equal $el and $search respectively, passed in from contents.js module 
 				this.$root = options.$el;
 				this.$search = options.$search;
@@ -73,10 +72,12 @@ define([
 				if (!collection.size()) {
 					if(!this.ns.views.noPicture) {
 						this.ns.views.noPicture = new NoPicturesView({ message: "No Images found" });
+						
 					}
 					this.$root.html( this.ns.views.noPicture.render().el );
 				} else {
 					//re-render picture gallery on change
+
 					this.$root.html( this.ns.views.pictures.render().el)
 				}
 			}, 
